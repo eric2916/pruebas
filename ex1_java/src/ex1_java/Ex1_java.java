@@ -8,8 +8,8 @@ public class Ex1_java {
     public static void main(String[] args) {
        TipusPropietat [] taula = new TipusPropietat[6];
        taula[0]=new TipusPropietat("Casa");
-       taula[2]=new TipusPropietat("Pis");
-       taula[4]=new TipusPropietat("Atic");
+       taula[2]=new TipusPropietat("Piso");
+       taula[4]=new TipusPropietat("Atico");
        taula[1]=null;taula[3]=null;taula[5]=null;
        
         for (int i = 0; i < taula.length; i++) {
