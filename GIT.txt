@@ -1,0 +1,174 @@
+git init (crea una BD) solo una vez
+-BD del projecte el crea a la carpeta .git oculta que no se debe tocar.
+
+*****crear un fichero config.txt
+ 
+git status
+-analiza los archivos y dice que archivos se han modificado, borrado desde la ultima conexion
+
+
+
+((git add .
+-pasa als arxius a staged
++más+
+git commit*
+(git commit -m 'comentario') <--sin el vi
+-acepta els arxius que has creat
+*sale un editor vi)) guardat per sempre
+
+
+-donarse de alta
+git config --global user.name "david"
+git config --global user.email m2.dlagunas@infomila.info
+
+
+-si modificamos algo y no recordamos que, poner
+git status y nos indicara
+
+-Actualizar la modificacion de Arriba, no un archivo nuevo.
+git commit -m 'canvi 1' -a
+
+
+-Mostrar todos los commits, historial
+git log
+git log -2 (los dos ultimos commit)
+
+-Muestar los canvios que hemos hecho en el fichero sino lo hemos subido
+git diff
+-sube y muetra canvi
+git -a -m 'segon canvi'
+
+
+-comparar=hacer  git log coger los primeros 4 numeros del commit y comparar los dos que quieres
+git diff 2a2f  0025
+
+
+-git lg1 MOSTRA LES VERSIONS
+muestra el id el comentari el autor
+
+-volver el archivo  a esa version, desde git lg1 vemos el numero de la version y podemos volver a la version que elegimos
+git checkout 0025b45   (puede ser un hash 0025b45 ,una head (atras 1) HEAD~1,  tag ) 
+
+-SALIR 
+esc+: + w + q+
+
+
+repas
+(untracked unstaged)||HI HA CANVIS||   --------->git add . -------> ||"staged"||----------->git commit -m 'XXXX' ---------->||canvis confirmats("commited")||
+  				    <--------git reset (vuelves d unstaged els canvis)
+				   <---------git checkout -- * (desfer els canvis bd,arrepentiment (si no has fet commit) ---||canvis confirmats("commited")||
+
+
+
+git checkout -- *
+si no has fet commit. pqro has gravat, pots tornar al arxiu com estaba a pesar de estar grabat.
+
+
+git revert HEAD
+lo mismo pero si has fet commit. el que fa es que reverteix els canvis pero , no borra el que hi ha la BD, sino que crea un altre projecte pero desfen els canvis de la ultima versio.
+git revert HEAD~1 , vuleve hasta la penultima
+
+
+////   GITIGNORE en Netbeans //////
+
+podemos crear archivo en 
+https://www.gitignore.io/
+
+por ejemplo de java.
+
+# Created by https://www.gitignore.io/api/netbeans
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# End of https://www.gitignore.io/api/netbeans
+
+1-en el proyecto,que queremos hacer git,  en la carpeta principal,Boton derecho git bash
+hacer un git init,
+git init
+
+2-creamos un archivo de texto y copiamos la parrafada de la web y lo guardamos dentro del proyecto
+le quitamos extension .txt
+y lo nombramos gitignore
+
+3- vamos a la consola y cambiamos nombre del archivo de esta manera
+mv gitignore .gitignore
+
+
+170209_BRANQUES,TAGS
+
+git checkout master (para volver a la branca si hay un detached)
+
+
+hacer un TAG en una version, para poder volver a ella mas facil (haciendo saltos)
+git tag -a 'v1.0' -m 'versio 1.0'
+
+
+volver al tag despues de un cambi,(HACIENDO SALTOS)
+git checkout 'v1.0'   
+Pero aqui no puedes hacer COMMITS sino se lia (hay un detached) 
+
+Hay que Crear branca nova 'branch'
+mv1.0
+-creacio de branca
+git branch mv1.0 (no pot fer-se commit)
+--moverse a la branca
+git checkout mv1.0
+
+Ahora ya podemos hacer los cambios en el fichero
+hacemos commit en el fichero
+y ya podemos revisar con un git lg1
+
+
+El fallo esta arreglado en la branca pero no en el master(principal)
+Primero hay que colocarse en el master y decirle que mezcle los cambios de la branca
+--vovler al master (vemos que se ve lo que habia en el master en el netbeans)
+git checkout master
+--hacer la mezcla (mezclamos y ya esta la version arreglada si no hay conflictos)
+git merge mv1.0
+--si hay conflicto tiene que cambiarlo el programador
+--despues de solucionar 
+ git add .
+ git commit -m 'solucion al cambio de branca'
+
+
+
+
+
+17-02-13 stash 
+
+(*)Hacemos cambios en netbeans, una clase nova.
+no fem commit i despres de un temps tornem al projecte
+si volem descartar els canvis
+git checkout -- *
+
+
+(*)si no volem descartar,hi ha un opcio per guardar-la un calaix (estem a la branca MASTER (important))
+git add .
+git stash
+
+
+(*)fem un git status i podemos ver que todo esta limpio(correcto);
+(*) cuando hacemos un git checkout para moverse mejor esta limpio, sense canvis, una opcio seria el git stash
+(*)vamos a fem un altre-canvi
+git checkout mv1.0
+
+
+
+(*)luego vamos al master (por que alli hemos hecho el stash (important))
+git checkout master
+
+(*)Recuperem el que hi ha al calaix,
+ y se puede continuar treballant (es com una copia temporal)
+git stash apply 
+
+17-02-13  EN EQUIPOS
+
+git push (carrega)
+git fetch (descarrega el que no tens)
+git pull
