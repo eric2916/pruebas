@@ -12,5 +12,9 @@ package ex1_java;
 public class Documento {
     private int numero;
 	private int dia;
+<<<<<<< HEAD
         private double precio;
+=======
+       
+>>>>>>> b2.0
 }
