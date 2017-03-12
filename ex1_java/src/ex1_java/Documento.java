@@ -11,4 +11,5 @@ package ex1_java;
  */
 public class Documento {
     private int numero;
+	private int dia;
 }
