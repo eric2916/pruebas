@@ -10,5 +10,5 @@ package ex1_java;
  * @author david
  */
 public class Documento {
-    
+    private int numero;
 }
