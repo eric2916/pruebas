@@ -18,5 +18,8 @@ public class Documento {
        
 
         private String Nom;
+		public void(String nom){
+			Nom=nom;
+		}
 
 }
