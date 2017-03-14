@@ -13,4 +13,5 @@ public class Documento {
     private int numero;
 	private int dia;
         private int precio;
+        private String Nom;
 }
